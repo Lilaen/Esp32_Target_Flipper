@@ -174,7 +174,7 @@ String SendHTML() {
   ptr += "<th><a class=\"button button-off\" href=\"/api/edge\" target=\"iframe\">Edge</a>\n</th>";
   ptr += "</center></tr></table>";
   ptr += "<p>192.168.2.250 / pxMicro.local</p>"; // Update IP adress
-  ptr += "<iframe height=\"0\" width=\"0\" target=\"iframe\"></iframe>";
+  ptr += "<iframe height=\"0\" width=\"0\" name=\"iframe\"></iframe>";
   ptr += "</body>\n";
   ptr += "</html>\n";
   return ptr;
