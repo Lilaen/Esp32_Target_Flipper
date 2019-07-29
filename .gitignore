@@ -1,4 +1,5 @@
 # Custom
+build/
 
 # Created by https://www.gitignore.io/api/vim,c++,osx,node,linux,windows,sublimetext,intellij+all
 # Edit at https://www.gitignore.io/?templates=vim,c++,osx,node,linux,windows,sublimetext,intellij+all
