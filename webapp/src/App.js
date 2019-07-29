@@ -31,7 +31,6 @@ export default () => {
 			<Info type="Away">7s</Info>
 			<Info type="Face">3s</Info>
 			<Info type="Rep">5x</Info>
-			<Info type="Wifi">On</Info>
 			<Info type="Bay">{ bay }</Info>
 		</div>
 
