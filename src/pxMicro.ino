@@ -76,10 +76,10 @@ void setup() {
   digitalWrite(stat_mdns_led, HIGH);
 
   server.on("/", handle_OnConnect);
-  server.on("/Edge",  Edge);
-  server.on("/Face",  Face);
-  server.on("/Start", Start);
-  server.on("/Stop",  Stop);
+  server.on("/api/edge",  Edge);
+  server.on("/api/face",  Face);
+  server.on("/api/start", Start);
+  server.on("/api/stop",  Stop);
 
   server.begin();
   Serial.println("HTTP server started");
@@ -112,41 +112,39 @@ void sendhtml() {
 }
 
 void Face() {
+  server.send(200, "text/html", "");
   digitalWrite(BTN_Face, HIGH);
   Serial.println ("Face Pressed");
   delay(Pressed_delay);
   digitalWrite(BTN_Face, LOW);
   Serial.println ("Face Reset");
-  sendhtml();
 }
 void  Edge() {
+  server.send(200, "text/html", "");
   digitalWrite(BTN_Edge, HIGH);
   Serial.println ("Edge Pressed");
   delay(Pressed_delay);
   digitalWrite(BTN_Edge, LOW);
   Serial.println ("Edge Reset");
-  sendhtml();
 }
-
 void  Start() {
+  server.send(200, "text/html", "");
   digitalWrite(BTN_Start, HIGH);
   Serial.println ("Start Pressed");
   delay(Pressed_delay);
   digitalWrite(BTN_Start, LOW);
   Serial.println ("Start Reset");
-  sendhtml();
 }
 void  Stop() {
+  server.send(200, "text/html", "");
   digitalWrite(BTN_Stop, HIGH);
   Serial.println ("Stop Pressed");
   delay(Pressed_delay);
   digitalWrite(BTN_Stop, LOW);
   Serial.println ("Stop Reset");
-  sendhtml();
 }
 
 void handle_OnConnect() {
-  ;
   sendhtml();
 }
 
@@ -167,15 +165,16 @@ String SendHTML() {
   ptr += "<h1>Target Control</h1>";
   ptr += "<h3>For PX-MICRO</h3>";
   ptr += "<center><table><tr>";
-  ptr += "<th><a class=\"button button-on\" href=\"/Start\">Start</a>\n</th>";
+  ptr += "<th><a class=\"button button-on\" href=\"/api/start\" target=\"iframe\">Start</a>\n</th>";
   ptr += "<th>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</th>";
-  ptr += "<th><a class=\"button button-off\" href=\"/Face\">Face</a>\n</th>";
+  ptr += "<th><a class=\"button button-off\" href=\"/api/face\" target=\"iframe\">Face</a>\n</th>";
   ptr += "</tr>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<tr>";
-  ptr += "<th><a class=\"button button-stop\" href=\"/Stop\">Stop</a>\n</th>";
+  ptr += "<th><a class=\"button button-stop\" href=\"/api/stop\" target=\"iframe\">Stop</a>\n</th>";
   ptr += "<th></th>";
-  ptr += "<th><a class=\"button button-off\" href=\"/Edge\">Edge</a>\n</th>";
+  ptr += "<th><a class=\"button button-off\" href=\"/api/edge\" target=\"iframe\">Edge</a>\n</th>";
   ptr += "</center></tr></table>";
   ptr += "<p>192.168.2.250 / pxMicro.local</p>"; // Update IP adress
+  ptr += "<iframe height=\"0\" width=\"0\" target=\"iframe\"></iframe>";
   ptr += "</body>\n";
   ptr += "</html>\n";
   return ptr;
